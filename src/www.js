@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var app = require('./express');
+import app from './express';
 import Server from './server';
 
 console.log(typeof(Server));

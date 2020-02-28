@@ -3,8 +3,11 @@ var http=require('http');
 var debug=require('debug');
 import app from './express';
 class Server {
-    constructor(){
+    
+    constructor(app){
         this.server;
+        this.port;    
+        this.app=app;
     };
     /**
      * Init the Server
@@ -13,8 +16,9 @@ class Server {
         /**
         * Get port from environment and store in Express.
         */
-        var port=this.normalizePort(process.env.PORT||'3000');
-        app.set('port',port);
+        var port=this.normalizePort(process.env.PORT||'3001');
+        this.app.set('port',port);
+        console.log('PORT : ' + port);
         /**
         * Create HTTP server.
         */
@@ -24,7 +28,9 @@ class Server {
          */
         this.server.listen(port);
         this.server.on('error', this.onError.bind(this));
+        console.log('BINDED ERROR EVENT');
         this.server.on('listening', this.onListening.bind(this));
+        console.log('BINDED LISTENING EVENT');
     }
     /**
      * Normalize a port into a number, string, or false.
@@ -52,9 +58,9 @@ class Server {
             throw error;
         }
         
-        var bind = typeof port === 'string'
-            ? 'Pipe ' + port
-            : 'Port ' + port;
+        var bind = typeof this.port === 'string'
+            ? 'Pipe ' + this.port
+            : 'Port ' + this.port;
         
         // handle specific listen errors with friendly messages
         switch (error.code) {
