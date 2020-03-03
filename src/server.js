@@ -1,7 +1,5 @@
-
-var http=require('http');
-var debug=require('debug');
-import app from './express';
+import http from 'http';
+import debug from 'debug';
 class Server {
     
     constructor(app){
