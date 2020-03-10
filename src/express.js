@@ -4,7 +4,8 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import indexRouter from './routes/index';
-
+import graphqlHTTP from 'express-graphql';
+import schema from './schema/';
 //var usersRouter = require('./routes/users');
 
 var app = express();
@@ -21,6 +22,10 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/', indexRouter);
 //app.use('/users', usersRouter);
+app.use('/api',graphqlHTTP({
+  schema,
+  graphiql:true 
+}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

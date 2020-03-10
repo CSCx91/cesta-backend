@@ -1,6 +1,5 @@
 import mongoose, { Schema } from "mongoose";
 const schema = new Schema({
-    view: {type: Number, required: true, default: 0},
     date: {type: Date, required: true},
     post_type: {type: Boolean, required: true}, //True is selling, False is requesting
     item: {type: Schema.Types.ObjectId, required: true, ref: "Item"},
