@@ -6,9 +6,12 @@ import logger from 'morgan';
 import indexRouter from './routes/index';
 import graphqlHTTP from 'express-graphql';
 import schema from './schema/';
+import mongoose from 'mongoose';
 //var usersRouter = require('./routes/users');
 
 var app = express();
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, '../views'));
@@ -19,6 +22,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
+
+try{
+  mongoose.connect('mongodb+srv://Cesta:Plattsburgh1@default-cluster-fxrpa.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true });
+  console.log("Connecting to db");
+}catch(error){
+  console.log(error);
+}
 
 app.use('/', indexRouter);
 //app.use('/users', usersRouter);

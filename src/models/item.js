@@ -2,7 +2,7 @@ import mongoose, { Schema } from "mongoose";
 const schema = new Schema({
     title: {type: String, required: true},
     price: {type: Number, required: true},
-    condition: {type: Number, required: true}, //ENUM for the state of the item (New, refurbish, ..)
+    condition: {type: String, required: true}, //ENUM for the state of the item (New, refurbish, ..)
     description: {type: String, required: true},
     pictures: [{type: String}],
     category: [{type: String}],
