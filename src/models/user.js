@@ -1,6 +1,5 @@
 import mongoose, { Schema } from "mongoose";
 const schema = new Schema({
-    auth_id : {type: String},
     first_name : {type: String, required: true},
     last_name : {type: String, required: true},
     email: {type: String, required: true},
