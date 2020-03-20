@@ -3,6 +3,7 @@ import {GraphQLObjectType, GraphQLString, GraphQLSchema,GraphQLInt} from 'graphq
 import { GraphQLDate } from 'graphql-compose';
 import UserType from './user';
 import ItemType from './item';
+import {Item, User} from '../models';
 const OrderType = new GraphQLObjectType({
     name:'Order',
     fields:()=>({
@@ -12,19 +13,19 @@ const OrderType = new GraphQLObjectType({
         item:{
             type:ItemType,
             resolve(parent,args){
-                return {};
+                return Item.findById(parent.itemId);
             }
         },//
         buyer:{
             type:UserType,
             resolve(parent,args){
-                return {};
+                return User.findById(parent.buyerId);
             }
         },//
         seller:{
             type:UserType,
             resolve(parent,args){
-                return {};
+                return User.findById(parent.sellerId);
             }
         },//
         successful:{type:GraphQLBoolean}

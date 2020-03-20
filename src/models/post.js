@@ -7,7 +7,7 @@ const schema = new Schema({
     expire_date: {type: Date, required: true},
     posterId: {type: Schema.Types.ObjectId, required: true, ref: "User"},
     commentIds: [{type: Schema.Types.ObjectId, ref: "Comment"}],
-    isDone: {type: Boolean, ref: "Order"}
+    isDone: {type: Boolean}
 });
 const Post = mongoose.model("Post", schema);
 export default Post;

@@ -2,6 +2,7 @@ import graphql, { GraphQLBoolean } from 'graphql';
 import {GraphQLObjectType, GraphQLString, GraphQLSchema,GraphQLInt} from 'graphql';
 import { GraphQLDate } from 'graphql-compose';
 import UserType from './user';
+import {User} from '../models';
 const CommentType = new GraphQLObjectType({
     name:'Comment',
     fields:()=>({
@@ -10,7 +11,7 @@ const CommentType = new GraphQLObjectType({
         author:{
             type:UserType,
             resolve(parent,args){
-                return {};
+                return User.findById(parent.authorId);
             }
         },
         context:{type:GraphQLString}

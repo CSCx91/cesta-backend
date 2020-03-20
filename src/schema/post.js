@@ -4,6 +4,7 @@ import { GraphQLDate } from 'graphql-compose';
 import ItemType from './item';
 import UserType from './user';
 import CommentType from './comment';
+import {Item, User, Comment} from '../models';
 const PostType = new GraphQLObjectType({
     name:'Post',
     fields:()=>({
@@ -15,19 +16,19 @@ const PostType = new GraphQLObjectType({
         item:{
             type: ItemType,
             resolve(parent,args){
-                return {};
+                return Item.findById(parent.itemId);
             }
         },//
         poster:{
             type: UserType,
             resolve(parent,args){
-                return {};
+                return User.findById(parent.posterId);
             }
         },//
         comments:{
             type: new GraphQLList(CommentType),
             resolve(parent,args){
-                return {};
+                return parent.commendIds.map(id=> Comment.findById(id));
             }
         },//
         idDone:{type: GraphQLBoolean}
