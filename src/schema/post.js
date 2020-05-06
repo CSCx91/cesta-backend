@@ -31,7 +31,7 @@ const PostType = new GraphQLObjectType({
                 return parent.commendIds.map(id=> Comment.findById(id));
             }
         },//
-        idDone:{type: GraphQLBoolean}
+        isDone:{type: GraphQLBoolean}
     })
 });
 export default PostType;

@@ -14,7 +14,7 @@ const Mutation = new GraphQLObjectType({
             type: ItemType,
             args:{
                 title:{type:GraphQLString},
-                condition:{type: GraphQLString},
+                condition:{type: GraphQLInt},
                 price:{type:GraphQLInt},
                 description:{type: GraphQLString},
                 pictures:{type:GraphQLList(GraphQLString)},
@@ -43,9 +43,10 @@ const Mutation = new GraphQLObjectType({
                 phone_number:{type:GraphQLString}
             },
             resolve(parent,args){
+                console.log(args);
                 let user=new User({
                     first_name: args.first_name,
-                    last_name: args.lastname,
+                    last_name: args.last_name,
                     email: args.email,
                     phone_number: args.phone_number,
                     list_of_boughtIds:[],
@@ -113,13 +114,14 @@ const Mutation = new GraphQLObjectType({
                 acceptorId: {type: GraphQLString}
             },
             resolve(parent, args){
-                let post=Post.findById(postId);
+                let post=Post.findById(args.postId);
+                
                 let order=new Order({
                     date: args.date,
                     post_type: post.post_type,
                     itemId: post.itemId,
                     buyerId: (post.post_type)?(args.acceptorId):(post.posterId),
-                    seller: (post.post_type)?(post.posterId):(args.acceptorId),
+                    sellerId: (post.post_type)?(post.posterId):(args.acceptorId),
                     successful:true
 
                 });
