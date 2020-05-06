@@ -18,7 +18,7 @@ const Mutation = new GraphQLObjectType({
                 price:{type:GraphQLInt},
                 description:{type: GraphQLString},
                 pictures:{type:GraphQLList(GraphQLString)},
-                category:{type:GraphQLList(GraphQLString)},
+                category:{type:GraphQLString},
                 negotiable:{type:GraphQLBoolean}
             },
             resolve(parent,args){
@@ -60,7 +60,7 @@ const Mutation = new GraphQLObjectType({
             type: PostType,
             args:{
                 date_of_post: {type:GraphQLDate},
-                expore_date: {type:GraphQLDate},
+                expire_date: {type:GraphQLDate},
                 post_type: {type: GraphQLBoolean},
                 itemId: {type: GraphQLString},
                 posterId: {type: GraphQLString}           

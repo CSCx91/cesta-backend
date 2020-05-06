@@ -5,7 +5,7 @@ const schema = new Schema({
     condition: {type: String, required: true}, //ENUM for the state of the item (New, refurbish, ..)
     description: {type: String, required: true},
     pictures: [{type: String}],
-    category: [{type: String}],
+    category: {type: String},
     negotiable: {type: Boolean}
 });
 const Item = mongoose.model("Item",schema);

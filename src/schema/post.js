@@ -11,7 +11,7 @@ const PostType = new GraphQLObjectType({
         id:{type:GraphQLString},
         view: {type:GraphQLInt},
         date_of_post: {type:GraphQLDate},
-        expore_date: {type:GraphQLDate},
+        expire_date: {type:GraphQLDate},
         post_type: {type: GraphQLBoolean},
         item:{
             type: ItemType,

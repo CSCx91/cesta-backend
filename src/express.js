@@ -24,7 +24,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 
 try{
-  mongoose.connect('', {useNewUrlParser: true,useUnifiedTopology: true });
+  mongoose.connect('mongodb+srv://Cesta:Plattsburgh1@default-cluster-fxrpa.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true });
   console.log("Connecting to db");
 }catch(error){
   console.log(error);
