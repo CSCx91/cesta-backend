@@ -7,6 +7,7 @@ import indexRouter from './routes/index';
 import graphqlHTTP from 'express-graphql';
 import schema from './schema/';
 import mongoose from 'mongoose';
+import cors from 'cors';
 //var usersRouter = require('./routes/users');
 
 var app = express();
@@ -29,7 +30,7 @@ try{
 }catch(error){
   console.log(error);
 }
-
+app.use(cors());
 app.use('/', indexRouter);
 //app.use('/users', usersRouter);
 app.use('/api',graphqlHTTP({
