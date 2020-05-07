@@ -18,7 +18,7 @@ const Mutation = new GraphQLObjectType({
                 price:{type:GraphQLInt},
                 description:{type: GraphQLString},
                 pictures:{type:GraphQLList(GraphQLString)},
-                category:{type:GraphQLString},
+                category:{type:GraphQLInt},
                 negotiable:{type:GraphQLBoolean}
             },
             resolve(parent,args){
@@ -114,19 +114,8 @@ const Mutation = new GraphQLObjectType({
                 acceptorId: {type: GraphQLString}
             },
             resolve(parent, args){
-                let post=Post.findById(args.postId);
                 
-                let order=new Order({
-                    date: args.date,
-                    post_type: post.post_type,
-                    itemId: post.itemId,
-                    buyerId: (post.post_type)?(args.acceptorId):(post.posterId),
-                    sellerId: (post.post_type)?(post.posterId):(args.acceptorId),
-                    successful:true
-
-                });
-                post.update({"isDone":true});
-                return order.save();
+                return {};
             }
         }
     }

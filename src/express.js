@@ -7,7 +7,7 @@ import indexRouter from './routes/index';
 import graphqlHTTP from 'express-graphql';
 import schema from './schema/';
 import mongoose from 'mongoose';
-import cors from 'cors';
+const cors=require('cors');
 //var usersRouter = require('./routes/users');
 
 var app = express();
@@ -25,13 +25,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 
 try{
-  mongoose.connect('', {useNewUrlParser: true,useUnifiedTopology: true });
+  mongoose.connect('mongodb+srv://Cesta:Plattsburgh1@default-cluster-fxrpa.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true });
   console.log("Connecting to db");
 }catch(error){
   console.log(error);
 }
 app.use(cors());
-app.use('/', indexRouter);
+app.use('/',indexRouter);
 //app.use('/users', usersRouter);
 app.use('/api',graphqlHTTP({
   schema,

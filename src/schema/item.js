@@ -11,7 +11,7 @@ const ItemType= new GraphQLObjectType({
         condition:{type: GraphQLInt},
         description:{type:GraphQLString},
         pictures:{type:GraphQLList(GraphQLString)},
-        category:{type:GraphQLString},
+        category:{type:GraphQLInt},
         negotiable:{type:GraphQLBoolean}
     })
 });
